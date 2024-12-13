@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Match Stream</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+    <video id="video" width="100%" controls></video>
+    <script>
+        var video = document.getElementById('video');
+        var videoSrc = "http://45.8.200.222:25461/live/247340/764085/86872.m3u8?token=ShRZAEYJFQxGXFRZUAEFVQBcCVRUUwhXA1EEUQZXVlYJV1MFAFJTD1waShpGQUQDVlVuXFUXAw4DWgAFHRYTFVREbghRQw0UXAxXARcZFBJeVVQXCwUVFEULUxULFlRRAwEHQxlDUk4QXRRWVFlpAlJOWFZUFwNYQA5bGxNbCDlVU1wAWwUVDEYJRBQXXEUWFQJfQF1ZFRRXC0NFUEADRAsUBFUFVhUaRlsJTVtBRB8VAhN8fxcVFFAaQ1JfRw8JXxQLQ1hSQg5GFERRRmpEA0RMQ1BQWFxEF1gVBxMYRAtQTm4CWg9ZUwdMD1dbRhRcFQwTGRNYVlhcFlhFbkQPAhMME1MCUwMCRkU=";
+
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+        }
+        // Fallback for browsers that do not support HLS.js
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+        }
+    </script>
+</body>
+</html>
